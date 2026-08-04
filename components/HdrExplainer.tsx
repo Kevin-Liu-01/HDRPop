@@ -2,23 +2,46 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, Camera, CircleCheck } from "lucide-react";
+import {
+  ArrowRight,
+  BadgePlus,
+  Camera,
+  CircleCheck,
+  Download,
+  FileImage,
+  Layers3,
+  MonitorUp,
+  SlidersHorizontal,
+  SunMedium,
+} from "lucide-react";
 
 type DiagramKey = "linkedin" | "instagram" | "capture";
+type StepIconKey = "image" | "tag" | "download" | "layers" | "sun" | "display" | "tone-map" | "capture";
+
+const stepIcons = {
+  image: FileImage,
+  tag: BadgePlus,
+  download: Download,
+  layers: Layers3,
+  sun: SunMedium,
+  display: MonitorUp,
+  "tone-map": SlidersHorizontal,
+  capture: Camera,
+} satisfies Record<StepIconKey, typeof FileImage>;
 
 const diagrams: Record<DiagramKey, {
   label: string;
   logo?: string;
-  steps: Array<{ action: string; title: string; note: string }>;
+  steps: Array<{ action: string; title: string; note: string; icon: StepIconKey }>;
   takeaway: string;
 }> = {
   linkedin: {
     label: "LinkedIn",
     logo: "/linkedin-in-logo.svg",
     steps: [
-      { action: "Start", title: "SDR JPEG", note: "An ordinary image" },
-      { action: "Tag", title: "Rec.2100 PQ", note: "Attach the HDR profile" },
-      { action: "Result", title: "PQ JPEG", note: "HDR Pop’s download" },
+      { action: "Start", title: "SDR JPEG", note: "An ordinary image", icon: "image" },
+      { action: "Tag", title: "Rec.2100 PQ", note: "Attach the HDR profile", icon: "tag" },
+      { action: "Result", title: "PQ JPEG", note: "HDR Pop’s download", icon: "download" },
     ],
     takeaway: "Use the PQ JPEG from HDR Pop. This route is the most likely to survive a custom LinkedIn image upload.",
   },
@@ -26,18 +49,18 @@ const diagrams: Record<DiagramKey, {
     label: "Instagram",
     logo: "/instagram-logo-thesvg.svg",
     steps: [
-      { action: "Start", title: "SDR image", note: "The visible fallback" },
-      { action: "Add", title: "Gain map", note: "Brightness instructions" },
-      { action: "Result", title: "Ultra HDR", note: "A gain-map JPEG" },
+      { action: "Start", title: "SDR image", note: "The visible fallback", icon: "image" },
+      { action: "Add", title: "Gain map", note: "Brightness instructions", icon: "layers" },
+      { action: "Result", title: "Ultra HDR", note: "A gain-map JPEG", icon: "sun" },
     ],
     takeaway: "Instagram expects Ultra HDR rather than HDR Pop’s PQ file. Editing the post in Instagram can strip the gain map.",
   },
   capture: {
     label: "Screenshot",
     steps: [
-      { action: "Display", title: "HDR page", note: "Extra light on screen" },
-      { action: "Compress", title: "Tone map", note: "Fit into SDR range" },
-      { action: "Result", title: "SDR capture", note: "The pop disappears" },
+      { action: "Display", title: "HDR page", note: "Extra light on screen", icon: "display" },
+      { action: "Compress", title: "Tone map", note: "Fit into SDR range", icon: "tone-map" },
+      { action: "Result", title: "SDR capture", note: "The pop disappears", icon: "capture" },
     ],
     takeaway: "A screenshot compresses the highlight back toward ordinary white. Open the live page on an XDR display to see it.",
   },
@@ -80,7 +103,15 @@ export function HdrExplainer() {
           {active.steps.map((step, index) => (
             <div className="pipeline-fragment" key={step.title}>
               <div className="pipeline-step">
-                <span className="pipeline-index">{step.action}</span>
+                <div className="pipeline-step-head">
+                  <span className="pipeline-index">{step.action}</span>
+                  <span className="pipeline-step-icon" aria-hidden="true">
+                    {(() => {
+                      const StepIcon = stepIcons[step.icon];
+                      return <StepIcon size={21} strokeWidth={1.7} />;
+                    })()}
+                  </span>
+                </div>
                 <strong>{step.title}</strong>
                 <small>{step.note}</small>
               </div>

@@ -306,8 +306,10 @@ button { color: inherit; }
 .diagram-tab-icon img { width: 21px; height: 21px; display: block; border-radius: 4px; }
 .pipeline { padding: 26px; display: flex; align-items: stretch; border: 1px solid var(--line); border-top: 0; background: white; }
 .pipeline-fragment { min-width: 0; flex: 1; display: flex; align-items: center; gap: 13px; }
-.pipeline-step { min-width: 0; flex: 1; min-height: 118px; padding: 18px; display: flex; flex-direction: column; justify-content: center; border: 1px solid var(--line); background: var(--paper); }
-.pipeline-index { margin-bottom: 18px; font: 700 9px/1 ui-monospace, monospace; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; }
+.pipeline-step { min-width: 0; flex: 1; min-height: 138px; padding: 17px 18px; display: flex; flex-direction: column; justify-content: center; border: 1px solid var(--line); background: var(--paper); }
+.pipeline-step-head { margin-bottom: 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.pipeline-index { font: 700 9px/1 ui-monospace, monospace; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; }
+.pipeline-step-icon { width: 34px; height: 34px; display: grid; place-items: center; flex: 0 0 auto; border: 1px solid var(--line); border-radius: 50%; background: white; color: var(--ink); }
 .pipeline-step strong { font-size: 18px; line-height: 1.15; }
 .pipeline-step small { margin-top: 7px; color: var(--muted); font-size: 11px; line-height: 1.4; }
 .pipeline-arrow { flex: 0 0 24px; display: grid; place-items: center; color: var(--muted); }
