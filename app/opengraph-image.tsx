@@ -1,50 +1,23 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
-export const alt = "Why a LinkedIn logo looked brighter than the rest of my screen — HDR Pop";
+export const alt = "Why LinkedIn Logos Look Brighter Than the Rest of Your Screen — HDR Pop";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-function LinkedInMark({ small = false }: { small?: boolean }) {
-  const markSize = small ? 40 : 56;
-
-  return (
-    <div
-      style={{
-        width: markSize,
-        height: markSize,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: small ? 7 : 9,
-        background: "#0a66c2",
-        color: "#ffffff",
-        fontFamily: "Arial, sans-serif",
-        fontSize: small ? 27 : 39,
-        fontWeight: 700,
-        letterSpacing: "-2px",
-        paddingRight: 3,
-      }}
-    >
-      in
-    </div>
-  );
+async function localImage(fileName: string, mimeType: string) {
+  const data = await readFile(join(process.cwd(), "public", fileName), "base64");
+  return `data:${mimeType};base64,${data}`;
 }
 
-function GhostMark() {
-  return (
-    <svg width="266" height="266" viewBox="0 0 240 240" aria-hidden="true">
-      <rect width="240" height="240" rx="30" fill="#050505" />
-      <path
-        d="M31 158c-9-18-11-46-7-72 5-39 32-64 69-64 40 0 61 27 72 61 10 31 34 50 63 62v55c-28-7-58 0-88 1-50 2-91-9-109-43Z"
-        fill="#fff"
-      />
-      <ellipse cx="75" cy="83" rx="9" ry="15" fill="#050505" />
-      <ellipse cx="122" cy="83" rx="9" ry="15" fill="#050505" />
-    </svg>
-  );
-}
+export default async function OpenGraphImage() {
+  const [hdrPopLogo, linkedInLogo, ghostLogo] = await Promise.all([
+    localImage("hdr-pop-logo-source.jpg", "image/jpeg"),
+    localImage("linkedin-in-logo.png", "image/png"),
+    localImage("ghost-source.png", "image/png"),
+  ]);
 
-export default function OpenGraphImage() {
   return new ImageResponse(
     (
       <div
@@ -71,22 +44,7 @@ export default function OpenGraphImage() {
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: 15 }}>
-            <div
-              style={{
-                width: 40,
-                height: 40,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                borderRadius: 7,
-                background: "#050505",
-                color: "#e9ff73",
-                fontSize: 24,
-                fontWeight: 700,
-              }}
-            >
-              +
-            </div>
+            <img src={hdrPopLogo} width={42} height={42} alt="" />
             <div style={{ display: "flex", fontSize: 24, fontWeight: 700 }}>HDR/POP</div>
           </div>
           <div style={{ display: "flex", color: "#626871", fontSize: 18, letterSpacing: "1px" }}>
@@ -97,7 +55,7 @@ export default function OpenGraphImage() {
         <div style={{ flex: 1, display: "flex" }}>
           <div
             style={{
-              width: 754,
+              width: 770,
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
@@ -106,8 +64,8 @@ export default function OpenGraphImage() {
               borderRight: "2px solid #9aa1a9",
             }}
           >
-            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
-              <LinkedInMark small />
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 25 }}>
+              <img src={linkedInLogo} width={40} height={40} alt="" />
               <div style={{ display: "flex", color: "#626871", fontSize: 18 }}>
                 INSPIRED BY A LINKEDIN PROFILE
               </div>
@@ -117,15 +75,15 @@ export default function OpenGraphImage() {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                fontSize: 53,
-                lineHeight: 1.05,
-                letterSpacing: "-1.8px",
+                fontSize: 50,
+                lineHeight: 1.06,
+                letterSpacing: "-1.6px",
                 fontWeight: 700,
               }}
             >
-              <div style={{ display: "flex" }}>Why a LinkedIn logo</div>
-              <div style={{ display: "flex" }}>looked brighter than the</div>
-              <div style={{ display: "flex" }}>rest of my screen</div>
+              <div style={{ display: "flex" }}>Why LinkedIn Logos</div>
+              <div style={{ display: "flex" }}>Look Brighter Than the Rest</div>
+              <div style={{ display: "flex" }}>of Your Screen</div>
             </div>
 
             <div
@@ -166,8 +124,15 @@ export default function OpenGraphImage() {
                 borderRadius: 52,
               }}
             />
-            <div style={{ display: "flex", padding: 8, border: "2px solid #9aa1a9", background: "#ffffff" }}>
-              <GhostMark />
+            <div
+              style={{
+                display: "flex",
+                padding: 8,
+                border: "2px solid #9aa1a9",
+                background: "#ffffff",
+              }}
+            >
+              <img src={ghostLogo} width={266} height={266} alt="" />
             </div>
             <div
               style={{
@@ -180,7 +145,7 @@ export default function OpenGraphImage() {
               }}
             >
               <div style={{ width: 10, height: 10, display: "flex", borderRadius: 99, background: "#5a7d19" }} />
-              PQ-TAGGED GHOST
+              ORIGINAL PQ-TAGGED GHOST
             </div>
           </div>
         </div>
