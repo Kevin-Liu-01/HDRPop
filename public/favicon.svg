@@ -1,5 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#070707"/>
-  <path d="M15 18h11v11h12V18h11v28H38V35H26v11H15z" fill="#fff"/>
-  <path d="M8 52h48" stroke="#a9ff68" stroke-width="3"/>
+  <defs>
+    <clipPath id="tile">
+      <rect width="64" height="64" rx="14"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#tile)">
+    <rect width="64" height="64" fill="#050505"/>
+    <path d="M35 26 51 0h13v15L41 34Z" fill="#e9ff73"/>
+
+    <g fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round">
+      <path d="M32 11v9M32 44v9M11 32h9M44 32h9"/>
+      <path d="m17 17 6.5 6.5M40.5 40.5 47 47M17 47l6.5-6.5"/>
+    </g>
+
+    <circle cx="32" cy="32" r="12" fill="#fff"/>
+  </g>
 </svg>
