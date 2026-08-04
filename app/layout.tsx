@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 const siteUrl = new URL("https://hdr.kevinliu.studio");
-const title = "Why LinkedIn Logos Look Brighter Than the Rest of Your Screen";
+const title = "Why LinkedIn Logos Look Brighter Than the Rest of The Page";
 const description =
   "Turn ordinary images into PQ-tagged HDR highlights, compare SDR and HDR live, and learn why the effect changes across platforms.";
 

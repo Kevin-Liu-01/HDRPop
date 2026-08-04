@@ -61,6 +61,7 @@ button { color: inherit; }
 }
 .title-linkedin-logo {
   display: inline-flex;
+  border-radius: 0.13em;
   color: #0a66c2;
   text-decoration: none;
   overflow: hidden;
@@ -76,6 +77,7 @@ button { color: inherit; }
 .inline-person { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; vertical-align: middle; }
 .inline-person img { width: 27px; height: 27px; border: 1px solid var(--soft-line); border-radius: 50%; object-fit: cover; }
 .post-byline { margin: 30px 0 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+.post-byline a { color: inherit; font-weight: 700; text-underline-offset: 3px; }
 .rail-spacer {
   height: 38px;
   border-block: 1px solid var(--soft-line);

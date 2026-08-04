@@ -11,7 +11,7 @@ npm install
 npm run dev
 ```
 
-Open the app directly on a MacBook Pro XDR screen to see the effect. Screenshots commonly tone-map the HDR and SDR previews until they look alike.
+Open the app directly on a Mac, iPhone, or iPad with an XDR display to see the effect. Screenshots commonly tone-map the HDR and SDR previews until they look alike.
 
 ## Features
 

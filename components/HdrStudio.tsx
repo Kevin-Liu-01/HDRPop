@@ -433,7 +433,7 @@ export function HdrStudio() {
 
       <p className="mac-note">
         <MonitorUp size={17} />
-        <span><strong>Open this page directly on your Mac’s XDR screen to see the difference.</strong> A screenshot tone-maps both images and usually makes them look identical.</span>
+        <span><strong>Open this page on a Mac, iPhone, or iPad with an XDR display to see the difference.</strong> A screenshot tone-maps both images and usually makes them look identical.</span>
       </p>
 
       <section className="proof" id="proof">

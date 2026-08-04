@@ -16,7 +16,7 @@
       <path d="M168 168l34 34M310 310l34 34M168 344l34-34"/>
     </g>
 
-    <path d="M300 214L420 0h92v98L334 230Z" fill="#e9ff73"/>
+    <path d="M284 218L420 0h92v98L304 242Z" fill="#e9ff73"/>
     <circle cx="256" cy="256" r="72" fill="#fff"/>
   </g>
 </svg>

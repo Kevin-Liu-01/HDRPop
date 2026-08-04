@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
-export const alt = "Why LinkedIn Logos Look Brighter Than the Rest of Your Screen — HDR Pop";
+export const alt = "Why LinkedIn Logos Look Brighter Than the Rest of The Page — HDR Pop";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -48,7 +48,7 @@ export default async function OpenGraphImage() {
             <div style={{ display: "flex", fontSize: 24, fontWeight: 700 }}>HDR/POP</div>
           </div>
           <div style={{ display: "flex", color: "#626871", fontSize: 18, letterSpacing: "1px" }}>
-            FIELD NOTE + CONVERTER
+            OPEN-SOURCE HDR IMAGE TOOL
           </div>
         </div>
 
@@ -65,9 +65,19 @@ export default async function OpenGraphImage() {
             }}
           >
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 25 }}>
-              <img src={linkedInLogo} width={40} height={40} alt="" />
+              <div
+                style={{
+                  width: 40,
+                  height: 40,
+                  display: "flex",
+                  overflow: "hidden",
+                  borderRadius: 6,
+                }}
+              >
+                <img src={linkedInLogo} width={40} height={40} alt="" />
+              </div>
               <div style={{ display: "flex", color: "#626871", fontSize: 18 }}>
-                INSPIRED BY A LINKEDIN PROFILE
+                THE EXTRA-BRIGHT IMAGE TRICK
               </div>
             </div>
 
@@ -83,7 +93,7 @@ export default async function OpenGraphImage() {
             >
               <div style={{ display: "flex" }}>Why LinkedIn Logos</div>
               <div style={{ display: "flex" }}>Look Brighter Than the Rest</div>
-              <div style={{ display: "flex" }}>of Your Screen</div>
+              <div style={{ display: "flex" }}>of The Page</div>
             </div>
 
             <div
@@ -162,7 +172,7 @@ export default async function OpenGraphImage() {
             fontSize: 18,
           }}
         >
-          <div style={{ display: "flex", fontWeight: 700 }}>OPEN ON A MAC XDR DISPLAY</div>
+          <div style={{ display: "flex", fontWeight: 700 }}>OPEN ON A MAC / IPHONE / IPAD XDR DISPLAY!</div>
           <div style={{ display: "flex", color: "#535961" }}>hdr.kevinliu.studio</div>
         </div>
       </div>
