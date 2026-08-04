@@ -2,44 +2,44 @@
 "use client";
 
 import { useState } from "react";
+import { ArrowRight, Camera, CircleCheck } from "lucide-react";
 
 type DiagramKey = "linkedin" | "instagram" | "capture";
 
 const diagrams: Record<DiagramKey, {
   label: string;
-  logo: string;
-  steps: Array<{ title: string; note: string }>;
+  logo?: string;
+  steps: Array<{ action: string; title: string; note: string }>;
   takeaway: string;
 }> = {
   linkedin: {
     label: "LinkedIn",
-    logo: "in",
+    logo: "/linkedin-in-logo.svg",
     steps: [
-      { title: "SDR JPEG", note: "Ordinary pixels" },
-      { title: "Rec.2100 PQ", note: "HDR color profile" },
-      { title: "HDR JPEG", note: "This tool’s output" },
+      { action: "Start", title: "SDR JPEG", note: "An ordinary image" },
+      { action: "Tag", title: "Rec.2100 PQ", note: "Attach the HDR profile" },
+      { action: "Result", title: "PQ JPEG", note: "HDR Pop’s download" },
     ],
-    takeaway: "This is the route Tom Nick found most likely to survive custom image uploads such as LinkedIn company logos.",
+    takeaway: "Use the PQ JPEG from HDR Pop. This route is the most likely to survive a custom LinkedIn image upload.",
   },
   instagram: {
     label: "Instagram",
-    logo: "◎",
+    logo: "/instagram-logo-thesvg.svg",
     steps: [
-      { title: "SDR JPEG", note: "Fallback image" },
-      { title: "Gain map", note: "Where to add light" },
-      { title: "Ultra HDR", note: "Different format" },
+      { action: "Start", title: "SDR image", note: "The visible fallback" },
+      { action: "Add", title: "Gain map", note: "Brightness instructions" },
+      { action: "Result", title: "Ultra HDR", note: "A gain-map JPEG" },
     ],
-    takeaway: "Instagram feed posts generally use Ultra HDR instead. Editing the image inside Instagram can remove the effect.",
+    takeaway: "Instagram expects Ultra HDR rather than HDR Pop’s PQ file. Editing the post in Instagram can strip the gain map.",
   },
   capture: {
     label: "Screenshot",
-    logo: "⌘",
     steps: [
-      { title: "HDR page", note: "Extra display light" },
-      { title: "Tone map", note: "Compress luminance" },
-      { title: "SDR capture", note: "The trick disappears" },
+      { action: "Display", title: "HDR page", note: "Extra light on screen" },
+      { action: "Compress", title: "Tone map", note: "Fit into SDR range" },
+      { action: "Result", title: "SDR capture", note: "The pop disappears" },
     ],
-    takeaway: "A screenshot usually compresses the HDR highlight back into ordinary SDR white, which is why the live page matters.",
+    takeaway: "A screenshot compresses the highlight back toward ordinary white. Open the live page on an XDR display to see it.",
   },
 };
 
@@ -53,10 +53,8 @@ export function HdrExplainer() {
       <section className="read-section diagram-section">
         <h2>LinkedIn and Instagram take different files</h2>
         <p>
-          This diagram is here because “HDR image” does not mean one universal file. LinkedIn and Instagram
-          use different delivery paths, and any platform can strip or tone-map the HDR metadata. An SDR display
-          has no extra brightness to reveal either—so yes, this trick does not work everywhere. Choose a
-          destination below to see what it expects; HDR Pop creates the LinkedIn-style PQ-profile version.
+          HDR is not one universal file format. Pick a destination to see what it needs: HDR Pop creates the
+          LinkedIn-style PQ JPEG, Instagram expects Ultra HDR, and screenshots usually flatten both into SDR.
         </p>
 
         <div className="diagram-tabs" role="tablist" aria-label="Choose a platform diagram">
@@ -68,7 +66,11 @@ export function HdrExplainer() {
               role="tab"
               aria-selected={activeKey === key}
             >
-              <span>{diagrams[key].logo}</span>
+              <span className="diagram-tab-icon" aria-hidden="true">
+                {diagrams[key].logo
+                  ? <img src={diagrams[key].logo} alt="" />
+                  : <Camera size={19} strokeWidth={1.8} />}
+              </span>
               {diagrams[key].label}
             </button>
           ))}
@@ -78,15 +80,20 @@ export function HdrExplainer() {
           {active.steps.map((step, index) => (
             <div className="pipeline-fragment" key={step.title}>
               <div className="pipeline-step">
-                <span className="pipeline-index">0{index + 1}</span>
+                <span className="pipeline-index">{step.action}</span>
                 <strong>{step.title}</strong>
                 <small>{step.note}</small>
               </div>
-              {index < active.steps.length - 1 && <b aria-hidden="true">+</b>}
+              {index < active.steps.length - 1 && (
+                <span className="pipeline-arrow" aria-hidden="true"><ArrowRight size={20} /></span>
+              )}
             </div>
           ))}
         </div>
-        <p className="diagram-takeaway"><strong>{active.label}:</strong> {active.takeaway}</p>
+        <p className="diagram-takeaway">
+          <CircleCheck size={17} aria-hidden="true" />
+          <span><strong>{active.label}:</strong> {active.takeaway}</span>
+        </p>
       </section>
 
       <section className="read-section headroom-section">

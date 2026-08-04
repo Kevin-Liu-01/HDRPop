@@ -28,4 +28,4 @@ Open the app directly on a Mac, iPhone, or iPad with an XDR display to see the e
 
 ## Credits
 
-The marketing and platform notes are informed by Tom Nick's article [Why some images look brighter than your screen](https://tn1ck.com/blog/abuse-hdr-images-for-marketing). The LinkedIn-style preview is original UI informed by the profile structure of [Netly](https://github.com/tifa2UP/Netly), an MIT-licensed open-source LinkedIn clone. Visual system cues were studied from [Prototemplate](https://prototemplate.vercel.app/).
+The marketing and platform notes are informed by Tom Nick's article [Why some images look brighter than your screen](https://tn1ck.com/blog/abuse-hdr-images-for-marketing). The LinkedIn-style preview is original UI informed by the profile structure of [Netly](https://github.com/tifa2UP/Netly), an MIT-licensed open-source LinkedIn clone. Visual system cues were studied from [Prototemplate](https://prototemplate.vercel.app/). The Instagram mark comes from [theSVG](https://thesvg.org/icon/instagram).
