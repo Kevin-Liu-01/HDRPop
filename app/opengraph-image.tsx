@@ -44,7 +44,7 @@ export default async function OpenGraphImage() {
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: 15 }}>
-            <img src={hdrPopLogo} width={42} height={42} alt="" />
+            <img src={hdrPopLogo} width={42} height={42} style={{ borderRadius: 6 }} alt="" />
             <div style={{ display: "flex", fontSize: 24, fontWeight: 700 }}>HDR/POP</div>
           </div>
           <div style={{ display: "flex", color: "#626871", fontSize: 18, letterSpacing: "1px" }}>
