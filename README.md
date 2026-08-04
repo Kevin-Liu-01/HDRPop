@@ -2,6 +2,8 @@
 
 A browser-based campaign tool that assigns a Rec.2020/PQ ICC profile to ordinary JPEG pixels, creating unusually bright logos and highlights on compatible HDR/EDR displays.
 
+**Live:** [hdr.kevinliu.studio](https://hdr.kevinliu.studio/)
+
 ## Run locally
 
 ```sh
@@ -21,7 +23,8 @@ Open the app directly on a MacBook Pro XDR screen to see the effect. Screenshots
 - Overlaid HDR/SDR comparison scrubber
 - Live LinkedIn-style context mockup
 - Platform-format guidance and responsible-use notes
-- Generated HDR sun-and-rails brand mark
+- PQ-tagged HDR display mark
+- Code-generated Open Graph preview
 
 ## Credits
 
