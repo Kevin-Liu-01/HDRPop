@@ -3,9 +3,28 @@ import { ExternalLink } from "lucide-react";
 import { HdrExplainer } from "@/components/HdrExplainer";
 import { HdrStudio } from "@/components/HdrStudio";
 
+const siteUrl = "https://hdr.kevinliu.studio/";
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "WebSite", "@id": `${siteUrl}#website`, name: "HDR Pop", url: siteUrl },
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}#organization`,
+      name: "HDR Pop",
+      url: siteUrl,
+      logo: `${siteUrl}apple-touch-icon.png`,
+    },
+  ],
+};
+
 export default function Home() {
   return (
     <main className="article-page">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+      />
       <header className="simple-nav">
         <a className="brand" href="#top" aria-label="HDR Pop home">
           <img className="brand-logo hdr-asset" src="/hdr-pop-logo-hdr.jpg" alt="" />
